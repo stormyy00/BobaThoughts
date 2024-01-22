@@ -8,6 +8,6 @@ const page = () => {
       <Component />
     </div>
   );
-}
+};
 
-export default page
+export default page;
