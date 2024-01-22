@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Component from "../components/Component";
 
-export default function Home() {
+const page = () => {
   return (
     <div>
       hello
@@ -9,3 +9,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default page
