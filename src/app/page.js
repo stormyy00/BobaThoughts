@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Component from "../components/Component";
-import Map from "./maps"
+import Map from "./maps";
 
 const page = () => {
   return (

@@ -1,7 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
-export default function Maps() {
+const Maps = () => {
   const containerStyle = {
     width: "100%",
     height: "90vh",
@@ -46,4 +47,5 @@ export default function Maps() {
   ) : (
     <div>Loading...</div>
   );
-}
+};
+export default Maps;
