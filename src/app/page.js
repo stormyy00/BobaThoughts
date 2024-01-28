@@ -1,15 +1,13 @@
-"use client";
-
 import Image from "next/image";
 import Component from "../components/Component";
-import Map from "./maps";
+import Maps from "./maps";
 
 const page = () => {
   return (
-    <div>
+    <div className="flex flex-col">
       hello
       <Component />
-      <Map />
+      <Maps />
     </div>
   );
 };

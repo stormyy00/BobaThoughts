@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
-  Marker,
   Autocomplete,
+  Marker,
 } from "@react-google-maps/api";
 
 const Maps = () => {
@@ -20,78 +20,29 @@ const Maps = () => {
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
 
   const [map, setMap] = useState(null);
+  const [autocomplete, setAutocomplete] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
-    // Once the map is loaded, set the map state
     setMap(map);
   }, []);
 
   const onUnmount = React.useCallback(function callback() {
-    // Clean up resources when the component is unmounted
     setMap(null);
   }, []);
 
-  const initAutocomplete = (google, map) => {
-    const input = document.getElementById("pac-input");
-    const searchBox = new google.maps.places.SearchBox(input);
-
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    map.addListener("bounds_changed", () => {
-      searchBox.setBounds(map.getBounds());
-    });
-
-    let markers = [];
-
-    searchBox.addListener("places_changed", () => {
-      const places = searchBox.getPlaces();
-
-      if (places.length === 0) {
-        return;
-      }
-
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      const bounds = new google.maps.LatLngBounds();
-
-      places.forEach((place) => {
-        if (!place.geometry || !place.geometry.location) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-
-        const icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25),
-        };
-
-        markers.push(
-          new google.maps.Marker({
-            map,
-            icon,
-            title: place.name,
-            position: place.geometry.location,
-          })
-        );
-        if (place.geometry.viewport) {
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      map.fitBounds(bounds);
-    });
+  const onPlaceChanged = () => {
+    if (autocomplete !== null) {
+      const place = autocomplete.getPlace();
+      // Handle the selected place as needed
+      console.log("Selected Place:", place);
+      setSelectedPlace(place);
+    }
   };
 
   useEffect(() => {
@@ -100,7 +51,16 @@ const Maps = () => {
 
       if (google && map) {
         console.log("Google and map are available:", google, map);
-        initAutocomplete(google, map);
+
+        // Set up Autocomplete with options
+        const autocompleteInstance = new google.maps.places.Autocomplete(
+          document.getElementById("pac-input"),
+          { types: ["geocode"], componentRestrictions: { country: "us" } }
+        );
+        setAutocomplete(autocompleteInstance);
+
+        // Add listener for place selection
+        autocompleteInstance.addListener("place_changed", onPlaceChanged);
       } else {
         console.log("Google or map is not available:", google, map);
       }
@@ -112,16 +72,17 @@ const Maps = () => {
   }
 
   return isLoaded ? (
-    <>
-      <Autocomplete>
-        <input
-          id="pac-input"
-          type="text"
-          placeholder="Search places..."
-          className="m-2 w-1/2 p-3"
-        />
-      </Autocomplete>
-
+    <div className="flex flex-col">
+      <div className="bg-gray-400">
+        <Autocomplete onLoad={(autocomplete) => setAutocomplete(autocomplete)}>
+          <input
+            id="pac-input"
+            type="text"
+            placeholder="Search places..."
+            className="m-2 w-1/2 p-3 flex"
+          />
+        </Autocomplete>
+      </div>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -129,11 +90,18 @@ const Maps = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        {/* Optional: Add additional map components or features here */}
+        {selectedPlace && (
+          <Marker
+            position={{
+              lat: selectedPlace.geometry.location.lat(),
+              lng: selectedPlace.geometry.location.lng(),
+            }}
+          />
+        )}
       </GoogleMap>
-    </>
+    </div>
   ) : (
-    <div>Loading...</div>
+    <div className="text-3xl">Loading...</div>
   );
 };
 

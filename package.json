@@ -32,9 +32,6 @@
     "eslint-config-next": "^13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.32.2",
-    "husky": {
-      "hooks": {}
-    },
     "lint-staged": "^15.2.0",
     "postcss": "^8.4.29",
     "prettier": "^2.8.8",
