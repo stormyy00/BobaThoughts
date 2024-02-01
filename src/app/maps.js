@@ -3,9 +3,198 @@ import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
-  Autocomplete,
   Marker,
+  Autocomplete,
 } from "@react-google-maps/api";
+
+const mapOptions = {
+  styles: [
+    {
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#212121",
+        },
+      ],
+    },
+    {
+      elementType: "labels.icon",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#757575",
+        },
+      ],
+    },
+    {
+      elementType: "labels.text.stroke",
+      stylers: [
+        {
+          color: "#212121",
+        },
+      ],
+    },
+    {
+      featureType: "administrative",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#757575",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.country",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#9e9e9e",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.land_parcel",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.locality",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#bdbdbd",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#757575",
+        },
+      ],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#181818",
+        },
+      ],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#616161",
+        },
+      ],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text.stroke",
+      stylers: [
+        {
+          color: "#1b1b1b",
+        },
+      ],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry.fill",
+      stylers: [
+        {
+          color: "#2c2c2c",
+        },
+      ],
+    },
+    {
+      featureType: "road",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#8a8a8a",
+        },
+      ],
+    },
+    {
+      featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#373737",
+        },
+      ],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#3c3c3c",
+        },
+      ],
+    },
+    {
+      featureType: "road.highway.controlled_access",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#4e4e4e",
+        },
+      ],
+    },
+    {
+      featureType: "road.local",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#616161",
+        },
+      ],
+    },
+    {
+      featureType: "transit",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#757575",
+        },
+      ],
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#000000",
+        },
+      ],
+    },
+    {
+      featureType: "water",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#3d3d3d",
+        },
+      ],
+    },
+  ],
+};
 
 const Maps = () => {
   const containerStyle = {
@@ -20,29 +209,78 @@ const Maps = () => {
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
     libraries: ["places"],
   });
 
   const [map, setMap] = useState(null);
-  const [autocomplete, setAutocomplete] = useState(null);
-  const [selectedPlace, setSelectedPlace] = useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
+    // Once the map is loaded, set the map state
     setMap(map);
   }, []);
 
   const onUnmount = React.useCallback(function callback() {
+    // Clean up resources when the component is unmounted
     setMap(null);
   }, []);
 
-  const onPlaceChanged = () => {
-    if (autocomplete !== null) {
-      const place = autocomplete.getPlace();
-      // Handle the selected place as needed
-      console.log("Selected Place:", place);
-      setSelectedPlace(place);
-    }
+  const initAutocomplete = (google, map) => {
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    let markers = [];
+
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+
+      if (places.length === 0) {
+        return;
+      }
+
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        const icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25),
+        };
+
+        markers.push(
+          new google.maps.Marker({
+            map,
+            icon,
+            title: place.name,
+            position: place.geometry.location,
+          })
+        );
+        if (place.geometry.viewport) {
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
   };
 
   useEffect(() => {
@@ -51,17 +289,18 @@ const Maps = () => {
 
       if (google && map) {
         console.log("Google and map are available:", google, map);
-
+        initAutocomplete(google, map);
+        map.setOptions(mapOptions);
         // Set up Autocomplete with options
-        const autocompleteInstance = new google.maps.places.Autocomplete(
-          document.getElementById("pac-input"),
-          { types: ["geocode"], componentRestrictions: { country: "us" } }
-        );
-        console.log("Autocomplete loaded:", autocomplete);
-        setAutocomplete(autocompleteInstance);
+        // const autocompleteInstance = new google.maps.places.Autocomplete(
+        //   document.getElementById("pac-input"),
+        //   { types: ["geocode"], componentRestrictions: { country: "us" } }
+        // );
+        // console.log("Autocomplete loaded:", autocomplete);
+        // setAutocomplete(autocompleteInstance);
 
         // Add listener for place selection
-        autocompleteInstance.addListener("place_changed", onPlaceChanged);
+        // autocompleteInstance.addListener("place_changed", onPlaceChanged);
       } else {
         console.log("Google or map is not available:", google, map);
       }
@@ -73,17 +312,16 @@ const Maps = () => {
   }
 
   return isLoaded ? (
-    <div className="flex flex-col">
-      <div className="bg-gray-400">
-        <Autocomplete onLoad={(autocomplete) => setAutocomplete(autocomplete)}>
-          <input
-            id="pac-input"
-            type="text"
-            placeholder="Search places..."
-            className="m-2 w-1/2 p-3 flex"
-          />
-        </Autocomplete>
-      </div>
+    <>
+      <Autocomplete>
+        <input
+          id="pac-input"
+          type="text"
+          placeholder="Search places..."
+          className="m-2 w-1/2 p-3"
+        />
+      </Autocomplete>
+
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -91,18 +329,11 @@ const Maps = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        {selectedPlace && (
-          <Marker
-            position={{
-              lat: selectedPlace.geometry.location.lat(),
-              lng: selectedPlace.geometry.location.lng(),
-            }}
-          />
-        )}
+        {/* Optional: Add additional map components or features here */}
       </GoogleMap>
-    </div>
+    </>
   ) : (
-    <div className="text-3xl">Loading...</div>
+    <div>Loading...</div>
   );
 };
 
