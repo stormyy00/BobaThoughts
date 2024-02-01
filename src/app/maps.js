@@ -57,6 +57,7 @@ const Maps = () => {
           document.getElementById("pac-input"),
           { types: ["geocode"], componentRestrictions: { country: "us" } }
         );
+        console.log("Autocomplete loaded:", autocomplete);
         setAutocomplete(autocompleteInstance);
 
         // Add listener for place selection
