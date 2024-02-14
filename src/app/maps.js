@@ -48,6 +48,7 @@ const Maps = () => {
     });
 
     let markers = [];
+    let infoWindow = new google.maps.InfoWindow(); // Create a new InfoWindow instance
 
     searchBox.addListener("places_changed", () => {
       const places = searchBox.getPlaces();
@@ -77,14 +78,25 @@ const Maps = () => {
           scaledSize: new google.maps.Size(25, 25),
         };
 
-        markers.push(
-          new google.maps.Marker({
-            map,
-            icon,
-            title: place.name,
-            position: place.geometry.location,
-          })
-        );
+        const marker = new google.maps.Marker({
+          map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        });
+
+        marker.addListener("click", () => {
+          infoWindow.setContent(`
+            <div>
+              <h3 class="text-xl">${place.name}</h3>
+              <p>${place.formatted_address}</p>
+              <!-- You can add more details here -->
+            </div>
+          `);
+          infoWindow.open(map, marker); // Open the InfoWindow when marker is clicked
+        });
+
+        markers.push(marker);
         if (place.geometry.viewport) {
           bounds.union(place.geometry.viewport);
         } else {
