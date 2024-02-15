@@ -26,6 +26,26 @@ const Maps = () => {
   });
 
   const [map, setMap] = useState(null);
+  const [placeDetails, setPlaceDetails] = useState(null);
+
+  const displayPlaceDetails = (place) => {
+    // Fetch additional details about the place using Google Places API
+    const service = new google.maps.places.PlacesService(map);
+
+    service.getDetails(
+      {
+        placeId: place.place_id,
+        fields: ["name", "formatted_address", "photos", "reviews"], // Specify which additional details you want to fetch
+      },
+      (placeResult, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          setPlaceDetails(placeResult);
+        } else {
+          console.log("Error fetching place details:", status); // Log any errors
+        }
+      }
+    );
+  };
 
   const onLoad = React.useCallback(function callback(map) {
     // Once the map is loaded, set the map state
@@ -86,10 +106,14 @@ const Maps = () => {
         });
 
         marker.addListener("click", () => {
+          displayPlaceDetails(place);
+          console.log("Clicked marker:", place);
+          //use this to add information in the top of the marker
           infoWindow.setContent(`
-            <div>
+            <div> 
               <h3 class="text-xl">${place.name}</h3>
               <p>${place.formatted_address}</p>
+              <p>${place.rating}</p>
               <!-- You can add more details here -->
             </div>
           `);
@@ -153,6 +177,17 @@ const Maps = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
+        {placeDetails && (
+          <div>
+            <h3>{placeDetails.name}</h3>
+            <p>{placeDetails.formatted_address}</p>
+            {placeDetails.photos &&
+              placeDetails.photos.map((photo, index) => (
+                <img key={index} src={photo.getUrl()} alt={`Photo ${index}`} />
+              ))}
+            {/* Display other details like reviews, ratings, etc. */}
+          </div>
+        )}
         {/* Optional: Add additional map components or features here */}
       </GoogleMap>
     </>
