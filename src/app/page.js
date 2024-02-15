@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Maps from "./maps";
+import Maps from "../components/maps";
 import Logo from "../../public/logo.svg";
 
 const page = () => {
