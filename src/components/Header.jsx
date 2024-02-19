@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <section>
         <header className="flex justify-between items-center py-x px-8 mb-8 text-center bg-[#edf1f6]">
-            <div>
+            <div className= "mt-2">
             <Image src={Logo} alt="Logo" className="z-0" />
             </div>
         </header>

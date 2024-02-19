@@ -8,8 +8,8 @@ const Signin = () => {
         <Header/>
             <div className="w-full flex items-center justify-center lg:2-1/2">
                 <div className='bg-[#edf1f6] px-10 py-19 rounded-3xl'>
-                    <h1 className='text-3xl font-semibold flex items-center justify-center mt-3'>Welcome back</h1>
-                    <p className='font-medium text-lg text-gray-500 mt-4 flex items-center justify-center'>Please enter your account</p>
+                    <h1 className='text-3xl font-semibold flex items-center justify-center mt-5'>Welcome back!</h1>
+                    <p className='font-medium text-lg text-gray-500 flex items-center justify-center'>Please enter your account</p>
                     <div className = 'mt-8'>
                         <div>
                             <label className='text-lg font-medium'>Email</label>
