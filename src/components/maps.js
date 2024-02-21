@@ -181,10 +181,10 @@ const Maps = () => {
           <div>
             <h3>{placeDetails.name}</h3>
             <p>{placeDetails.formatted_address}</p>
-            {placeDetails.photos &&
+            {/* {placeDetails.photos &&
               placeDetails.photos.map((photo, index) => (
                 <img key={index} src={photo.getUrl()} alt={`Photo ${index}`} />
-              ))}
+              ))} */}
             {/* Display other details like reviews, ratings, etc. */}
           </div>
         )}
