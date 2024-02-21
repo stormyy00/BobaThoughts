@@ -1,11 +1,12 @@
 import Image from "next/image";
-import Component from "../components/Component";
+import Maps from "../components/maps";
+import Logo from "../../public/logo.svg";
 
 const page = () => {
   return (
-    <div>
-      hello
-      <Component />
+    <div className="flex flex-col">
+      <Image src={Logo} alt="Logo" className="z-0" />
+      <Maps />
     </div>
   );
 };

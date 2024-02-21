@@ -10,9 +10,11 @@
     "format": "npx prettier --write .",
     "check": "npx prettier --check .",
     "eslint": "npx eslint . --ext js --ext jsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.19.2",
     "autoprefixer": "10.4.15",
     "next": "13.4.19",
     "postcss": "8.4.29",
@@ -23,13 +25,13 @@
     "tailwindcss": "3.3.3"
   },
   "devDependencies": {
+    "@types/node": "20.11.7",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.42.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-next": "^13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.32.2",
-    "husky": "^8.0.0",
     "lint-staged": "^15.2.0",
     "postcss": "^8.4.29",
     "prettier": "^2.8.8",
