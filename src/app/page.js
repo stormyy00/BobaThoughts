@@ -1,13 +1,12 @@
-import Image from "next/image";
+import Header from "../components/Header";
 import Maps from "../components/maps";
-import Logo from "../../public/logo.svg";
-import Signin from "../components/Signin";
+
 
 const page = () => {
   return (
     <div className="flex flex-col">
-      <Signin />
-
+      <Header />
+      <Maps />
     </div>
   );
 };
