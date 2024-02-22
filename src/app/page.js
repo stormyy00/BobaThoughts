@@ -1,3 +1,4 @@
+"use client";
 import Enter from "@/components/Enter";
 import Header from "../components/Header";
 import Maps from "../components/maps";
