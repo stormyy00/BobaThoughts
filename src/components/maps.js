@@ -8,7 +8,8 @@ import {
 } from "@react-google-maps/api";
 import mapOptions from "./mapStyles";
 
-const Maps = () => {
+const Maps = ({ name }) => {
+  console.log(name + "from maps.js");
   const containerStyle = {
     width: "100%",
     height: "90vh",
