@@ -6,7 +6,7 @@ import {
   Marker,
   Autocomplete,
 } from "@react-google-maps/api";
-import mapOptions from "./mapStyles";
+import mapOptions from "@/styles/mapStyles";
 
 const Maps = ({ name }) => {
   console.log(name + "from maps.js");
