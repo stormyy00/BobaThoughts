@@ -14,7 +14,7 @@ const page = () => {
     <div className="flex flex-col">
       {isLocation ? (
         <div>
-          <Header /> <Maps name={isLocation} />{" "}
+          <Header /> <Maps name={isLocation} initialLocation={isLocation} />{" "}
         </div>
       ) : (
         <Enter onSubmit={handleNameSubmit} />
