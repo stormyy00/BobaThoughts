@@ -58,13 +58,16 @@ const Page = () => {
                                 onChange={(e) => setPassword(e.target.value)} required type="password" name="password" id="password"
                             />
                         </div>
-                        <div className='mt-8 flex justify-between items-center'>
-                            <button className='ml-2 font-medium text-base text-blue-600'>Forgot password</button>
+                        <div className='mt-4 flex justify-center items-center'>
+                            <button className='ml-2 font-medium text-base text-blue-600'>Forgot password?</button>
                         </div>
                     
-                        <div className='mt-8 flex flex-col gap-y-4'>
-                            <button type="submit" className='hover:scale-[1.01] ease--in-out transition-all py-3 rounded-xl bg-gray-300 text-lg font-bold'>Sign in</button>
-                            <button onClick={handleGSignIn}>Sign in with Google</button>
+                        <div className='mt-4 flex flex-col gap-y-4'>
+                            <button type="submit" className='hover:scale-[1.01] ease--in-out transition-all py-3 rounded-xl bg-gray-300 text-lg'>Sign in</button>
+                            <button 
+                            className='hover:scale-[1.01] ease--in-out transition-all py-3 rounded-xl bg-gray-300 text-lg'
+                            onClick={handleGSignIn}>Sign in with Google
+                            </button>
                         </div>
                     </form>
                         <div className= 'mt-8 mb-3 flex justify-center items-center'>
