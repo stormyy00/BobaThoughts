@@ -6,7 +6,6 @@ import Header from "../../components/Header";
 import Link from "next/link";
 import { UserAuth } from "../../context/AuthContext";
 
-
 const Page = () => {
     const { googleSignIn } = UserAuth();
     const [email, setEmail] = React.useState('')
@@ -41,7 +40,7 @@ const Page = () => {
             <div className="w-full flex items-center justify-center mt-10 lg:2-1/2">
                 <div className='bg-[#edf1f6] px-10 py-19 rounded-3xl'>
                     <h1 className='text-3xl font-semibold flex items-center justify-center mt-5'>Welcome!</h1>
-                    <p className='font-medium text-lg text-gray-500 flex items-center justify-center'>Please sign in</p>
+                    <p className='font-medium text-lg text-gray-500 flex items-center justify-center'>Please enter your information</p>
                     <form onSubmit={handleForm} className = 'mt-8 form'>
                         <div>
                             <label htmlFor="email" className='text-lg font-medium'>Email</label>
@@ -59,13 +58,13 @@ const Page = () => {
                                 onChange={(e) => setPassword(e.target.value)} required type="password" name="password" id="password"
                             />
                         </div>
-                        <div className='mt-8 flex justify-between items-center'>
-                            <button className='ml-2 font-medium text-base text-blue-600'>Forgot password</button>
-                        </div>
                     
                         <div className='mt-8 flex flex-col gap-y-4'>
-                            <button type="submit" className='hover:scale-[1.01] ease--in-out transition-all py-3 rounded-xl bg-gray-300 text-lg font-bold'>Sign up</button>
-                            <button onClick={handleGSignIn}>Sign in with Google</button>
+                            <button type="submit" className='hover:scale-[1.01] ease--in-out transition-all py-3 rounded-xl bg-gray-300 text-lg '>Sign up</button>
+                            <button 
+                            className='hover:scale-[1.01] ease--in-out transition-all py-3 rounded-xl bg-gray-300 text-lg'
+                            onClick={handleGSignIn}>Sign in with Google
+                            </button>
                         </div>
                     </form>
                         <div className= 'mt-8 mb-3 flex justify-center items-center'>
