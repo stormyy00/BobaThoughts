@@ -1,12 +1,24 @@
-import Image from "next/image";
+"use client";
+import Enter from "@/components/Enter";
+import Header from "../components/Header";
 import Maps from "../components/maps";
-import Logo from "../../public/logo.svg";
+import { useState } from "react";
 
 const page = () => {
+  const [isLocation, setIsLocation] = useState("");
+  const handleNameSubmit = (location) => {
+    setIsLocation(location);
+  };
+
   return (
     <div className="flex flex-col">
-      <Image src={Logo} alt="Logo" className="z-0" />
-      <Maps />
+      {isLocation ? (
+        <div>
+          <Header /> <Maps name={isLocation} initialLocation={isLocation} />{" "}
+        </div>
+      ) : (
+        <Enter onSubmit={handleNameSubmit} />
+      )}
     </div>
   );
 };
