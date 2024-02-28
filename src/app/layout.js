@@ -1,7 +1,6 @@
 import React from "react";
 import { Inter } from "next/font/google"; // Import the Inter font
 import "./globals.css"; // Import global styles
-import Navigation from "@/components/Navigation";
 import { AuthContextProvider } from "../context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] }); // Initialize Inter font
@@ -23,7 +22,7 @@ export default function RootLayout({ children }) {
         ></script>
       </head>
       <body className={inter.className}>
-        <Navigation /> {/* Include the NavigationBar component */}
+        
         <AuthContextProvider>{children}</AuthContextProvider>
       </body>
     </html>
