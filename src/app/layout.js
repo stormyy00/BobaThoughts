@@ -2,6 +2,7 @@ import React from "react";
 import { Inter } from "next/font/google"; // Import the Inter font
 import "./globals.css"; // Import global styles
 import Navigation from "@/components/Navigation";
+import { AuthContextProvider } from "../context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] }); // Initialize Inter font
 
@@ -9,19 +10,6 @@ export const metadata = {
   title: "Boba Thoughts",
   description: "Made With Love",
 };
-
-// const NavigationBar = () => {
-//   return (
-//     <nav className="navbar">
-//       <ul className="nav-list">
-//         <li className="nav-item"><a href="#">Home</a></li>
-//         <li className="nav-item"><a href="#">Gallery</a></li>
-//         <li className="nav-item"><a href="#">Contact</a></li>
-//         <li className="nav-item"><a href="#">Account</a></li>
-//       </ul>
-//     </nav>
-//   );
-// };
 
 export default function RootLayout({ children }) {
   return (
@@ -36,7 +24,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <Navigation /> {/* Include the NavigationBar component */}
-        {children}
+        <AuthContextProvider>{children}</AuthContextProvider>
       </body>
     </html>
   );

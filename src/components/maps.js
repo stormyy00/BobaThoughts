@@ -6,9 +6,10 @@ import {
   Marker,
   Autocomplete,
 } from "@react-google-maps/api";
-import mapOptions from "./mapStyles";
+import mapOptions from "@/styles/mapStyles";
 
-const Maps = () => {
+const Maps = ({ name, initialLocation }) => {
+  console.log(name + "from maps.js");
   const containerStyle = {
     width: "100%",
     height: "90vh",
@@ -27,6 +28,7 @@ const Maps = () => {
 
   const [map, setMap] = useState(null);
   const [placeDetails, setPlaceDetails] = useState(null);
+  const [location, setLocation] = useState(initialLocation || "");
 
   const displayPlaceDetails = (place) => {
     // Fetch additional details about the place using Google Places API
@@ -43,7 +45,7 @@ const Maps = () => {
         } else {
           console.log("Error fetching place details:", status); // Log any errors
         }
-      }
+      },
     );
   };
 
@@ -139,16 +141,6 @@ const Maps = () => {
         console.log("Google and map are available:", google, map);
         initAutocomplete(google, map);
         map.setOptions(mapOptions);
-        // Set up Autocomplete with options
-        // const autocompleteInstance = new google.maps.places.Autocomplete(
-        //   document.getElementById("pac-input"),
-        //   { types: ["geocode"], componentRestrictions: { country: "us" } }
-        // );
-        // console.log("Autocomplete loaded:", autocomplete);
-        // setAutocomplete(autocompleteInstance);
-
-        // Add listener for place selection
-        // autocompleteInstance.addListener("place_changed", onPlaceChanged);
       } else {
         console.log("Google or map is not available:", google, map);
       }
@@ -167,6 +159,8 @@ const Maps = () => {
           type="text"
           placeholder="Search places..."
           className="m-2 w-1/2 p-3"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </Autocomplete>
 
@@ -181,14 +175,8 @@ const Maps = () => {
           <div>
             <h3>{placeDetails.name}</h3>
             <p>{placeDetails.formatted_address}</p>
-            {placeDetails.photos &&
-              placeDetails.photos.map((photo, index) => (
-                <img key={index} src={photo.getUrl()} alt={`Photo ${index}`} />
-              ))}
-            {/* Display other details like reviews, ratings, etc. */}
           </div>
         )}
-        {/* Optional: Add additional map components or features here */}
       </GoogleMap>
     </>
   ) : (
