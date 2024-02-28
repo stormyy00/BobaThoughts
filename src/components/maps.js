@@ -45,7 +45,7 @@ const Maps = ({ name, initialLocation }) => {
         } else {
           console.log("Error fetching place details:", status); // Log any errors
         }
-      }
+      },
     );
   };
 
