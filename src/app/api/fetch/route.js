@@ -13,7 +13,7 @@ export const GET = async (req, res) => {
           Authorization: `Bearer ${process.env.NEXT_YELP_API_KEY}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     if (!response.ok) {

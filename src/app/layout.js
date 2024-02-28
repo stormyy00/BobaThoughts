@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
         ></script>
       </head>
       <body className={inter.className}>
-        
         <AuthContextProvider>{children}</AuthContextProvider>
       </body>
     </html>

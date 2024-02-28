@@ -27,7 +27,7 @@ const YelpSearch = () => {
             Origin: "localhost:3000",
             "x-cors-api-key": "temp_4407c675df9080e95c5e6bfd9e7089d8",
           },
-        }
+        },
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
