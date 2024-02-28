@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
         `}</style>
       </head>
       <body className={inter.className}>
-        {/* <NavigationBar /> Include the NavigationBar component */}
+        <NavigationBar /> {/* Include the NavigationBar component */}
         <AuthContextProvider>
             {children}
          </AuthContextProvider>
