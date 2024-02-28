@@ -16,7 +16,6 @@ const NavigationBar = () => {
         <li className="nav-item"><a href="#">Home</a></li>
         <li className="nav-item"><a href="#">Gallery</a></li>
         <li className="nav-item"><a href="#">Contact</a></li>
-        <li className="nav-item"><a href="#">Feedback</a></li>
         <li className="nav-item"><a href="#">Account</a></li>
       </ul>
     </nav>
