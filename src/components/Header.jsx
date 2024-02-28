@@ -1,47 +1,26 @@
-"use client";
-import React, { useEffect } from 'react';
+import React from "react";
+import Link from "next/link";
 import Logo from "../../public/logo.svg";
-import DefaultUserImg from "../../public/user-icon.svg";
 import Image from "next/image";
-import Link from 'next/link';
-import { UserAuth } from "../context/AuthContext";
 
 const Header = () => {
-  const { user, logOut } = UserAuth();
-
-  const handleSignOut = async () => {
-    try {
-      await logOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 50));
-    };
-    checkAuthentication();
-  }, [user]);
-
   return (
     <section>
-        <header className="flex justify-between items-center py-x px-8 text-center bg-[#edf1f6]">
+      <header className="flex justify-between items-center py-x px-8 mb-8 text-center bg-[#edf1f6]">
+        <div className="mt-2">
           <Link href="/">
-              <Image src={Logo} alt="Logo" className="z-0 m-2" />
+            <Image src={Logo} alt="Logo" className="z-0" navigate="/page.js" />
           </Link>
-          {user ? (
-            <div className="flex flex-row">
-              <Image src={user?.photoURL || DefaultUserImg} width={50} height={50}/>
-              <div className='px-8 pt-3'>{user.email}</div>
-              <button className="place-self-center text-white bg-red-600 font-medium rounded-full text-xl px-5 py-2.5 me-2 mb-2 mr-2 h-full" onClick={handleSignOut}>Log out</button>
-            </div>
-          ) : (
-            <Link href="/signin" className="place-self-center text-white bg-gray-800 font-medium rounded-full text-xl px-5 py-2.5 me-2 mb-2 mr-2 h-full">Sign In</Link>
-          )}
-          
-        </header>
+        </div>
+
+        <Link href="/login">
+          <button className="bg-gray-300 text-black px8 py-3 font-bold tracking-widest text-lg rounded-full m-10 transition ease-in-out delay-150 hover:scale-[1.01]">
+            Sign in
+          </button>
+        </Link>
+      </header>
     </section>
-    
   );
 };
+
+export default Header;
