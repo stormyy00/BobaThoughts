@@ -1,0 +1,27 @@
+.navbar {
+  background-color: #333;
+  padding: 15px 0;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-item {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav-item:last-child {
+  margin-right: 0;
+}
+
+.nav-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  /* font-family: ${inter.family}; */
+}

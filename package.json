@@ -15,7 +15,10 @@
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
     "autoprefixer": "10.4.15",
-    "axios": "^1.6.7",
+
+
+    "firebase": "^10.8.0",
+
     "next": "13.4.19",
     "node-fetch": "^3.3.2",
     "postcss": "8.4.29",
@@ -35,7 +38,6 @@
     "eslint-plugin-react": "^7.32.2",
     "lint-staged": "^15.2.0",
     "postcss": "^8.4.29",
-    "prettier": "^2.8.8",
     "tailwindcss": "^3.3.3"
   },
   "lint-staged": {
