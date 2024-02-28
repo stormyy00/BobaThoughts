@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const YelpSearch = () => {
   const [businesses, setBusinesses] = useState([]);
@@ -9,14 +10,21 @@ const YelpSearch = () => {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        `/api/fetch/search?term=${searchTerm}&location=${location}`
+        `/api/fetch?term=${searchTerm}&location=${location}`
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
       const data = await response.json();
-      setBusinesses(data.businesses);
+      setBusinesses(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerm, location]);
+
   return (
     <div className="flex flex-col justify center w-full text-black">
       <div className="flex flex-col items-center  bg-blue-300">
