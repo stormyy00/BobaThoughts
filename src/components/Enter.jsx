@@ -14,7 +14,7 @@ const Enter = ({ onSubmit }) => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="h-full w-full flex items-center justify-center backdrop-blur-xl bg-white/30 z-50 absolute">
       <div className="flex flex-cols gap-2">
         <input
           type="text"
@@ -26,7 +26,7 @@ const Enter = ({ onSubmit }) => {
         <button
           onClick={handleSubmit}
           onChange={handleChange}
-          className="bg-gray-500 text-black rounded-xl px-4 py-4 mb-4"
+          className="bg-gray-700 text-black rounded-xl px-4 py-4 mb-4"
         >
           Submit
         </button>
