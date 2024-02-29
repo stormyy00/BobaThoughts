@@ -17,7 +17,6 @@ const YelpSearch = () => {
       const response = await fetch(
         `https://proxy.cors.sh/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${location}`,
         {
-          // mode: "no-cors",
           headers: {
             Authorization:
               "Bearer oMxyNN8K_x1GTfigxjR0npSd3la7VETdEJYq6MqczLVfIx3fYPjkIJLp6qqaXjPjSrcA_R5tsAR5mTpiHX8DIgUbr7fetqGuNOD7F5RqVVwaUC3XFfmVEvUg2s3eZXYx",

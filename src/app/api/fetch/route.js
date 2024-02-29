@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 export const GET = async (req, res) => {
   console.log("API route handler called");
@@ -7,11 +7,16 @@ export const GET = async (req, res) => {
 
   try {
     const response = await fetch(
-      `${"https://cors-anywhere.herokuapp.com/"}https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${location}`,
+      `https://proxy.cors.sh/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${location}`,
       {
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_YELP_API_KEY}`,
-          "Content-Type": "application/json",
+          Authorization:
+            "Bearer oMxyNN8K_x1GTfigxjR0npSd3la7VETdEJYq6MqczLVfIx3fYPjkIJLp6qqaXjPjSrcA_R5tsAR5mTpiHX8DIgUbr7fetqGuNOD7F5RqVVwaUC3XFfmVEvUg2s3eZXYx",
+          accept: "application/json",
+          "x-requested-with": "xmlhttprequest",
+          "Access-Control-Allow-Origin": "*",
+          Origin: "localhost:3000",
+          "x-cors-api-key": "temp_4407c675df9080e95c5e6bfd9e7089d8",
         },
       },
     );
