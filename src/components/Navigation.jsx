@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+"use client";
+import { useEffect } from "react";
 import "../styles/nav.css";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/logo.svg";
 import DefaultUserImg from "../../public/user-icon.svg";
 import { UserAuth } from "../context/AuthContext";
+import Button from "./Button";
 
 const Navigation = () => {
   const { user, logOut } = UserAuth();
@@ -25,21 +27,21 @@ const Navigation = () => {
   }, [user]);
 
   return (
-    <header className="flex justify-between items-center py-x px-8 text-center bg-[#edf1f6]">
+    <header className="flex h-[15vh] justify-between items-center py-x px-8 text-center bg-[#edf1f6]">
       {/* need to make a map here */}
       <Link href="/">
-        <Image src={Logo} alt="Logo" className="z-0 m-2" />
+        <Image src={Logo} alt="Logo" className="scale-75" />
       </Link>
 
       <div>
-        <Link href="/" className="px-8 font-bold text-lg">
+        {/* <Link href="/" className="px-8 font-bold text-lg">
           Home
-        </Link>
-        <Link href="/gallery" className="px-8 font-bold text-lg">
-          Gallery
+        </Link> */}
+        <Link href="/yelp" className="px-8 font-bold text-lg">
+          Yelp
         </Link>
         <Link href="/contact" className="px-8 font-bold text-lg">
-          Contact
+          About
         </Link>
       </div>
 
@@ -59,15 +61,17 @@ const Navigation = () => {
           </button>
         </div>
       ) : (
-        <Link
-          href="/signin"
-          className="place-self-center text-white bg-gray-800 font-medium rounded-full text-xl px-5 py-2.5 me-2 mb-2 mr-2 h-full"
-        >
-          Sign In
-        </Link>
+        <Button text="Sign In" path="/signin" />
       )}
     </header>
   );
 };
 
 export default Navigation;
+
+// <Link
+//   href="/signin"
+//   className="place-self-center text-white bg-gray-800 font-medium rounded-full text-xl px-5 py-1.5 me-5 mb-2 mr-2 h-full"
+// >
+//   Sign In
+// </Link>

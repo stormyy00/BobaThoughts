@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 const Header = () => {
   return (
     <section>
-      <Navigation /> {/* Include the NavigationBar component */}
+      {/* <Navigation /> Include the NavigationBar component */}
     </section>
   );
 };

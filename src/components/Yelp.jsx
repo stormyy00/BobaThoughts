@@ -44,7 +44,7 @@ const YelpSearch = () => {
 
   return (
     <div className="flex flex-col justify center w-full text-black">
-      <div className="flex flex-col items-center  bg-blue-300">
+      <div className="flex flex-col items-center bg-blue-300 ">
         <input
           type="text"
           placeholder="Enter business name"
