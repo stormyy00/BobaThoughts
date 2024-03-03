@@ -1,16 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
+import TextBox from "./TextBox";
 
 const YelpSearch = () => {
   const [businesses, setBusinesses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
 
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+  const handleChange = (value) => {
+    setSearchTerm(value);
   };
-  const handleChange1 = (event) => {
-    setLocation(event.target.value);
+  const handleChange1 = (value) => {
+    setLocation(value);
   };
   const handleSearch = async () => {
     try {
@@ -44,26 +45,30 @@ const YelpSearch = () => {
 
   return (
     <div className="flex flex-col justify center w-full text-black">
-      <div className="flex flex-col items-center bg-blue-300 ">
-        <input
-          type="text"
-          placeholder="Enter business name"
+      <div className="flex flex-col items-center bg-blue-300 gap-0">
+        <TextBox
+          placeholder={"Enter business name"}
           value={searchTerm}
           onChange={handleChange}
+          dataTestId="search-term"
         />
-        <input
-          type="text"
-          placeholder="Enter location"
+        <TextBox
+          placeholder={"Enter location"}
           value={location}
           onChange={handleChange1}
+          dataTestId="location"
         />
+        <button
+          className="bg-red-300 h-10 w-1/12 rounded-xl mt-5"
+          onClick={handleSearch}
+          data-testid="search-button "
+        >
+          Search
+        </button>
       </div>
-      <button className="bg-red-300" onClick={handleSearch}>
-        Search
-      </button>
 
       {businesses.businesses && businesses.businesses.length > 0 ? (
-        <div className="bg-green-300">
+        <div className="bg-green-300" data-testid="search-results">
           {businesses.businesses.map((business, index) => (
             <div key={index} className="flex flex-col">
               <p>{business.name}</p>
@@ -82,3 +87,20 @@ const YelpSearch = () => {
 };
 
 export default YelpSearch;
+
+{
+  /* <input
+  type="text"
+  placeholder="Enter business name"
+  value={searchTerm}
+  onChange={handleChange}
+  className="flex rounded-xl h-10 w-2/12 placeholder:justify-center"
+/>
+<input
+  type="text"
+  placeholder="Enter location"
+  value={location}
+  onChange={handleChange1}
+  className="flex rounded-xl  h-10 w-2/12 "
+/> */
+}

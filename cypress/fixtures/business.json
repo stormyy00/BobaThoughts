@@ -1,0 +1,22 @@
+{
+  "businesses": [
+    {
+      "id": "1",
+      "name": "Restaurant A",
+      "rating": 4.5,
+      "location": {
+        "address1": "123 Main St",
+        "city": "New York"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Restaurant B",
+      "rating": 4.0,
+      "location": {
+        "address1": "456 Broadway",
+        "city": "New York"
+      }
+    }
+  ]
+}
