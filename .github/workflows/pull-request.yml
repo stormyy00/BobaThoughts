@@ -34,15 +34,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use ACM Build
-        uses: acm-ucr/build@v2
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          if-no-files-found: error
-          path: ./.next
           
 
   e2e_testing:
