@@ -1,7 +1,6 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: Boba Thoughts
+name: HiSS UCR Website
 on:
   pull_request:
     branches: [main, dev]
@@ -15,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: acm-ucr/formatting@v2
-
+      
   images:
     name: images
     runs-on: ubuntu-latest
@@ -27,13 +26,11 @@ jobs:
           branch: ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
   build:
     name: build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-          
-
- 
+      - uses: acm-ucr/build@v2
