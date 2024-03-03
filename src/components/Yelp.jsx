@@ -61,7 +61,7 @@ const YelpSearch = () => {
         <button
           className="bg-red-300 h-10 w-1/12 rounded-xl mt-5"
           onClick={handleSearch}
-          data-testid="search-button"
+          data-testid="search-button "
         >
           Search
         </button>
