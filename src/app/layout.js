@@ -2,7 +2,6 @@ import React from "react";
 import { Inter } from "next/font/google"; // Import the Inter font
 import "./globals.css"; // Import global styles
 import { AuthContextProvider } from "../context/AuthContext";
-import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] }); // Initialize Inter font
 
@@ -23,10 +22,7 @@ export default function RootLayout({ children }) {
         ></script>
       </head>
       <body className={inter.className}>
-        <AuthContextProvider>
-          <Navigation />
-          {children}
-        </AuthContextProvider>
+        <AuthContextProvider>{children}</AuthContextProvider>
       </body>
     </html>
   );
