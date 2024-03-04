@@ -37,12 +37,10 @@ const Navigation = () => {
         {/* <Link href="/" className="px-8 font-bold text-lg">
           Home
         </Link> */}
-        <Link href="/yelp" className="px-8 font-bold text-lg">
-          Yelp
-        </Link>
-        <Link href="/contact" className="px-8 font-bold text-lg">
-          About
-        </Link>
+        <Button text="Yelp" path="/yelp" />
+      </div>
+      <div>
+        <Button text="About" path="/contact" />
       </div>
 
       {user ? (
