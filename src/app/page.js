@@ -17,7 +17,10 @@ const page = () => {
           <Header /> <Maps name={isLocation} initialLocation={isLocation} />{" "}
         </div>
       ) : (
-        <Enter onSubmit={handleNameSubmit} />
+        <>
+          <Enter onSubmit={handleNameSubmit} />
+          <Maps />
+        </>
       )}
     </div>
   );
