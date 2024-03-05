@@ -54,7 +54,7 @@ const Navigation = () => {
           {/* maybe had on hover effect to display email */}
 
           <button
-            className="place-items-center text-white bg-red-600 font-medium rounded-r-full text-xs px-5 py-3.5 -me-2 mb-0 mr-2"
+            className="place-items-center text-white bg-red-600 font-medium rounded-r-full text-xs px-5 py-3.5 -me-2 mb-0 mr-2  "
             onClick={handleSignOut}
           >
             Log out
@@ -68,10 +68,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-// <Link
-//   href="/signin"
-//   className="place-self-center text-white bg-gray-800 font-medium rounded-full text-xl px-5 py-1.5 me-5 mb-2 mr-2 h-full"
-// >
-//   Sign In
-// </Link>

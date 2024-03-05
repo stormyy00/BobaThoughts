@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import TextBox from "./TextBox";
 import Link from "next/link";
 import Image from "next/image";
+import Header from "./Header";
 
 const YelpSearch = () => {
   const [businesses, setBusinesses] = useState([]);
@@ -47,6 +48,7 @@ const YelpSearch = () => {
 
   return (
     <div className="flex flex-col justify center w-full text-black">
+      <Header />
       <div className="flex flex-col items-center gap-0">
         <TextBox
           placeholder={"Enter business name"}
