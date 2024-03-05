@@ -43,7 +43,7 @@ const Navigation = () => {
       </div>
 
       {user ? (
-        <div className="flex flex-row mx-8 rounded-3xl bg-gray-400">
+        <div className="flex flex-row mx-4 rounded-3xl ml-9">
           <Image
             src={user?.photoURL || DefaultUserImg}
             width={50}
