@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import TextBox from "./TextBox";
+import Link from "next/link";
+import Image from "next/image";
 
 const YelpSearch = () => {
   const [businesses, setBusinesses] = useState([]);
@@ -45,7 +47,7 @@ const YelpSearch = () => {
 
   return (
     <div className="flex flex-col justify center w-full text-black">
-      <div className="flex flex-col items-center bg-blue-300 gap-0">
+      <div className="flex flex-col items-center gap-0">
         <TextBox
           placeholder={"Enter business name"}
           value={searchTerm}
@@ -59,23 +61,41 @@ const YelpSearch = () => {
           dataTestId="location"
         />
         <button
-          className="bg-red-300 h-10 w-1/12 rounded-xl mt-5"
+          className="bg-red-300 h-10 w-1/12 rounded-xl mt-5 mb-5 border-2 border-black hover:scale-110 duration-300"
           onClick={handleSearch}
-          data-testid="search-button "
+          data-testid="search-button"
         >
           Search
         </button>
       </div>
 
       {businesses.businesses && businesses.businesses.length > 0 ? (
-        <div className="bg-green-300" data-testid="search-results">
+        <div
+          className="bg-green-300 grid grid-cols-3"
+          data-testid="search-results"
+        >
           {businesses.businesses.map((business, index) => (
-            <div key={index} className="flex flex-col">
-              <p>{business.name}</p>
-              <p>Rating: {business.rating}</p>
-              <p>
-                Location: {business.location.address1}, {business.location.city}
-              </p>
+            <div
+              key={index}
+              className="flex flex-cols-3 w-10/12 gap-0 mt-5 ml-11 bg-red-300 border-4 border-black mb-10 rounded-3xl justify-center duration-300"
+            >
+              <div className="flex flex-col items-center mt-3 -mb-9">
+                <Link href={business.url}>
+                  <p className="text-xl font-bold hover:scale-110 duration-300">
+                    {business.name}
+                  </p>
+                </Link>
+                <div>Rating: {business.rating}</div>
+                <div>
+                  Location: {business.location.address1},{" "}
+                  {business.location.city}
+                </div>
+                <img
+                  src={business.image_url}
+                  alt="image"
+                  className="w-full h-full scale-75 object-cover -mt-12"
+                />
+              </div>
             </div>
           ))}
         </div>

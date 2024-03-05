@@ -43,7 +43,7 @@ const Navigation = () => {
       </div>
 
       {user ? (
-        <div className="flex flex-row mx-8 rounded-3xl bg-gray-400">
+        <div className="flex flex-row mx-4 rounded-3xl ml-9">
           <Image
             src={user?.photoURL || DefaultUserImg}
             width={50}
@@ -54,7 +54,7 @@ const Navigation = () => {
           {/* maybe had on hover effect to display email */}
 
           <button
-            className="place-items-center text-white bg-red-600 font-medium rounded-r-full text-xs px-5 py-3.5 -me-2 mb-0 mr-2  "
+            className="place-items-center text-white bg-red-600 font-medium rounded-r-full text-xs px-5 py-3.5 -me-2 mb-0 mr-2"
             onClick={handleSignOut}
           >
             Log out

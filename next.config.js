@@ -5,6 +5,7 @@ module.exports = nextConfig;
 
 module.exports = {
   images: {
+    domains: ["s3-media1.fl.yelpcdn.com"],
     remotePatterns: [
       {
         protocol: "https",
