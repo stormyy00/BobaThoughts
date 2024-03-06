@@ -9,7 +9,6 @@ const YelpSearch = () => {
   const [businesses, setBusinesses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
-
   const handleChange = (value) => {
     setSearchTerm(value);
   };
