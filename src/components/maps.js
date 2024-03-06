@@ -7,6 +7,7 @@ import {
   Autocomplete,
 } from "@react-google-maps/api";
 import mapOptions from "@/styles/mapStyles";
+import YelpSearch from "./Yelp";
 
 const Maps = ({ name, initialLocation }) => {
   console.log(name + "from maps.js");
@@ -111,9 +112,13 @@ const Maps = ({ name, initialLocation }) => {
           displayPlaceDetails(place);
           console.log("Clicked marker:", place);
           //use this to add information in the top of the marker
+          const encodedAddress = encodeURIComponent(place.formatted_address);
+          const encodedName = encodeURIComponent(place.name);
           infoWindow.setContent(`
             <div> 
-              <h3 class="text-xl">${place.name}</h3>
+             <h3 class="text-xl">
+                <a href="/info?address=${encodeURIComponent(encodedAddress)}&term=${encodedName}">${place.name}</a>
+            </h3>
               <p>${place.formatted_address}</p>
               <p>${place.rating}</p>
               <!-- You can add more details here -->
@@ -165,18 +170,14 @@ const Maps = ({ name, initialLocation }) => {
       </Autocomplete>
 
       <GoogleMap
+        cy-data="google-map"
         mapContainerStyle={containerStyle}
         center={center}
         zoom={10}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        {placeDetails && (
-          <div>
-            <h3>{placeDetails.name}</h3>
-            <p>{placeDetails.formatted_address}</p>
-          </div>
-        )}
+        {/* <YelpSearch placeDetails={placeDetails} /> */}
       </GoogleMap>
     </>
   ) : (
