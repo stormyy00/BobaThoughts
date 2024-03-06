@@ -4,11 +4,17 @@ import TextBox from "./TextBox";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "./Header";
+import addFavorite from "@/firebase/firestore/addFavorite";
+import heart from "../../public/red-heart-icon.svg";
+import { getAuth } from "firebase/auth";
 
 const YelpSearch = () => {
   const [businesses, setBusinesses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const handleChange = (value) => {
     setSearchTerm(value);
   };
@@ -44,6 +50,20 @@ const YelpSearch = () => {
   //   useEffect(() => {
   //     handleSearch();
   //   }, [searchTerm, location]);
+
+  const handleFavorite = async (business) => {
+    // Call addFavorite function to add business to favorites
+    try {
+      const { result, error } = await addFavorite("favorites", user.uid, business.name);
+      if (error) {
+        console.log("Error adding to favorites:", error);
+      } else {
+        console.log("Added to favorites:", result);
+      }
+    } catch (error) {
+      console.log("Error adding to favorites:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col justify center w-full text-black">
@@ -91,6 +111,12 @@ const YelpSearch = () => {
                   Location: {business.location.address1},{" "}
                   {business.location.city}
                 </div>
+                <button
+                  onClick={() => handleFavorite(business)}
+                  className="my-2 hover:scale-110 duration-300"
+                >
+                  <Image src={heart} width={40} height={40} alt="heart"/>
+                </button>
                 <img
                   src={business.image_url}
                   alt="image"

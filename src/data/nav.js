@@ -14,4 +14,9 @@ export const items = [
     link: "/gallery",
     icon: "",
   },
+  {
+    name: "favorites",
+    link: "/favorites",
+    icon: "",
+  },
 ];
