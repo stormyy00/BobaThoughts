@@ -8,7 +8,9 @@ describe("Maps component", () => {
   //   });
 
   it("allows searching for places", () => {
-    cy.get("#pac-input").type("Your search query"); // Replace 'Your search query' with the query you want to test
+    cy.get('[ cy-data="input"]').type("New York");
+    cy.get('[ cy-data="button"]').click();
+    cy.get("#pac-input").type(" - Your search query"); // Replace 'Your search query' with the query you want to test
     cy.get(".pac-container").should("exist"); // Assuming `.pac-container` is the class for autocomplete suggestions container
   });
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Signin from "../../src/components/Signin";
+import Signin from "../../src/components/logs/Sign-in";
 
 describe("<Signin />", () => {
   it("renders", () => {
