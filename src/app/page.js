@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Maps from "../components/maps";
 import Logo from "../../public/logo.svg";
+import React from "react";
 
 const page = () => {
   return (
@@ -10,5 +11,6 @@ const page = () => {
     </div>
   );
 };
+
 
 export default page;

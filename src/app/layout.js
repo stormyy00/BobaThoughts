@@ -63,6 +63,7 @@ export default function RootLayout({ children }) {
         `}</style>
       </head>
       <body className={inter.className}>
+        <div id="google-map"></div> {/* Google Map container */}
         <NavigationBar /> {/* Include the NavigationBar component */}
         {children}
       </body>
