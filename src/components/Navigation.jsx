@@ -61,7 +61,7 @@ const Navigation = () => {
           </button>
         </div>
       ) : (
-        <Button text="Sign In" path="/signin" />
+        <Button text="sign in" path="/signin" />
       )}
     </header>
   );

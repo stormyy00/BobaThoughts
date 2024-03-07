@@ -134,7 +134,7 @@ const YelpSearch = () => {
           ))}
         </div>
       ) : (
-        <p>No businesses found</p>
+        <p className= "flex justify-center">No businesses found</p>
       )}
     </div>
   );
