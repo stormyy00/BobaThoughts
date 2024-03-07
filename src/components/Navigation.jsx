@@ -48,7 +48,7 @@ const Navigation = () => {
             src={user?.photoURL || DefaultUserImg}
             width={50}
             height={50}
-            className="rounded-l-full -ml-2 "
+            className="rounded-l-full -ml-2"
           />
           {/* <div className="px-0 pt-5 mx-2 text-sm">{user.email}</div> */}
           {/* maybe had on hover effect to display email */}
@@ -61,7 +61,7 @@ const Navigation = () => {
           </button>
         </div>
       ) : (
-        <Button text="Sign In" path="/signin" />
+        <Button text="sign in" path="/signin" />
       )}
     </header>
   );
