@@ -37,7 +37,7 @@ const Navigation = () => {
       <div className="w-9/12 flex flex-cols justify-end h-full items-center gap-6">
         {items.map((item, index) => (
           <div key={index} className=" hover:scale-110 duration-300 ">
-            <Button text={item.name} path={item.link} />
+            <Button text={item.name} icon={item.icon} path={item.link} />
           </div>
         ))}
       </div>

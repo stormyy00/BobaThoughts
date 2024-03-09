@@ -81,9 +81,9 @@ const Information = () => {
   return (
     <>
       <Header />
-      <div className="flex items-center flex-col h-full bg-red-400">
-        Business Details for {address} || {term}
-        <div className="flex w-6/12 h-1/4 flex-col items-center bg-lime-300">
+      <div className="flex items-center flex-col h-screen bg-red-400">
+        {/* Business Details for {address} || {term} */}
+        <div className="flex w-6/12 h-4/5 flex-col items-center bg-lime-300">
           <p className="text-2xl font-bold">{businesses.name}</p>
           <p>Rating: {businesses.rating}</p>
           <button
