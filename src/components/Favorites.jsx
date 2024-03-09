@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import getFavorites from "@/firebase/firestore/getFavorite";
@@ -26,7 +26,7 @@ const Favorites = () => {
     try {
       // Delete the favorite restaurant
       await deleteFavorite(restaurantName);
-      
+
       // After deletion, re-fetch the list of favorite restaurants
       fetchFavorites();
     } catch (error) {
@@ -38,30 +38,33 @@ const Favorites = () => {
     <div>
       <Header />
       <div>
-        <h2 className="font-bold text-3xl bg-[#edf1f6] border-1 border-black bg-font-bold flex items-center justify-center w-full text-black "> Favorite Restaurants</h2>
+        <div className="font-bold text-3xl bg-[#edf1f6] border-1 border-black bg-font-bold flex items-center justify-center w-full text-black ">
+          {" "}
+          Favorite Restaurants
+        </div>
         <div className="w-full flex items-center justify-center lg:3 mt-5">
-        <div className="bg-[#f6f6f6] border-2 rounded-3xl">
-        <div className="flex items-center justify-center text-black mb-5 ml-5 mr-5">
-
-          <ul className="font-bold">
-            {favoriteRestaurants.map((restaurant, index) => (
-              <li key={index} className="flex items-center justify-between mt-5">
-              <div className="flex items-center">
-                <span>{restaurant}</span>
-              </div>
-              <button
-                className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
-                onClick={() => handleButtonClicked(restaurant)}
-              >
-                delete
-              </button>
-            </li>
-            ))}
-          </ul>
-        </div>
-        </div>
-
-
+          <div className="bg-[#f6f6f6] border-2 rounded-3xl">
+            <div className="flex items-center justify-center text-black mb-5 ml-5 mr-5">
+              <ul className="font-bold">
+                {favoriteRestaurants.map((restaurant, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-between mt-5"
+                  >
+                    <div className="flex items-center">
+                      <span>{restaurant}</span>
+                    </div>
+                    <button
+                      className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-3xl ml-2"
+                      onClick={() => handleButtonClicked(restaurant)}
+                    >
+                      delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -69,5 +72,3 @@ const Favorites = () => {
 };
 
 export default Favorites;
-
-

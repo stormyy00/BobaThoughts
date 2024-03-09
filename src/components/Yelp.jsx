@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TextBox from "./TextBox";
 import Link from "next/link";
 import Image from "next/image";
@@ -61,7 +61,11 @@ const YelpSearch = () => {
 
     // Call addFavorite function to add business to favorites
     try {
-      const { result, error } = await addFavorite("favorites", user.uid, business.name);
+      const { result, error } = await addFavorite(
+        "favorites",
+        user.uid,
+        business.name,
+      );
       if (error) {
         console.log("Error adding to favorites:", error);
       } else {
@@ -120,9 +124,14 @@ const YelpSearch = () => {
                 </div>
                 <button
                   onClick={() => handleFavorite(business)}
-                  className={`my-2 hover:scale-110 duration-300 ${favoriteStatus[business.name] ? 'red-heart' : ''}`}
+                  className={`my-2 hover:scale-110 duration-300 ${favoriteStatus[business.name] ? "red-heart" : ""}`}
                 >
-                  <Image src={favoriteStatus[business.name] ? redheart : whiteheart} width={40} height={40} alt="heart" />
+                  <Image
+                    src={favoriteStatus[business.name] ? redheart : whiteheart}
+                    width={40}
+                    height={40}
+                    alt="heart"
+                  />
                 </button>
                 <img
                   src={business.image_url}
@@ -134,7 +143,7 @@ const YelpSearch = () => {
           ))}
         </div>
       ) : (
-        <p className= "flex justify-center">No businesses found</p>
+        <p className="flex justify-center">No businesses found</p>
       )}
     </div>
   );
