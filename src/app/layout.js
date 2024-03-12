@@ -17,6 +17,7 @@ const NavigationBar = () => {
         <li className="nav-item"><a href="#">Gallery</a></li>
         <li className="nav-item"><a href="#">Contact</a></li>
         <li className="nav-item"><a href="#">Account</a></li>
+        <li className="nav-item google-login"><a href="#">Login with Google</a></li>
       </ul>
     </nav>
   );
@@ -36,6 +37,9 @@ export default function RootLayout({ children }) {
           .navbar {
             background-color: #333;
             padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
           }
 
           .nav-list {
@@ -59,6 +63,19 @@ export default function RootLayout({ children }) {
             text-decoration: none;
             font-size: 18px;
             font-family: ${inter.family};
+          }
+
+          .google-login {
+            margin-right: 20px;
+          }
+
+          .google-login a {
+            background-color: #dd4b39;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
           }
         `}</style>
       </head>
