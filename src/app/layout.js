@@ -17,8 +17,8 @@ const NavigationBar = () => {
         <li className="nav-item"><a href="#">Gallery</a></li>
         <li className="nav-item"><a href="#">Contact</a></li>
         <li className="nav-item"><a href="#">Account</a></li>
-        <li className="nav-item google-login"><a href="#">Login with Google</a></li>
       </ul>
+      <div className="nav-item google-login"><a href="#">Login with Google</a></div>
     </nav>
   );
 };
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
           }
 
           .google-login {
-            margin-right: 20px;
+            margin-left: auto;
           }
 
           .google-login a {
