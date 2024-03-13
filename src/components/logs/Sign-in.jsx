@@ -38,9 +38,7 @@ const Sign = () => {
   const handleForgotPassword = async () => {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
-      .then(() => {
-        
-      })
+      .then(() => {})
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -88,7 +86,10 @@ const Sign = () => {
               />
             </div>
             <div className="mt-4 flex justify-center items-center">
-              <button className="ml-2 font-medium text-base text-blue-600" onClick={handleForgotPassword}>
+              <button
+                className="ml-2 font-medium text-base text-blue-600"
+                onClick={handleForgotPassword}
+              >
                 Forgot password?
               </button>
             </div>
