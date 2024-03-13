@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Header from "../Header";
 import Link from "next/link";
 import { UserAuth } from "../../context/AuthContext";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const Sign = () => {
   const { googleSignIn } = UserAuth();
@@ -32,6 +33,18 @@ const Sign = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleForgotPassword = async () => {
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
 
   return (
@@ -75,7 +88,7 @@ const Sign = () => {
               />
             </div>
             <div className="mt-4 flex justify-center items-center">
-              <button className="ml-2 font-medium text-base text-blue-600">
+              <button className="ml-2 font-medium text-base text-blue-600" onClick={handleForgotPassword}>
                 Forgot password?
               </button>
             </div>
