@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
         ></script>
       </head>
       <body className={inter.className}>
-        <AuthContextProvider>{children}</AuthContextProvider>
+        <div className="w-full bg-[#FEFBEA]/30">
+          <AuthContextProvider>{children}</AuthContextProvider>
+        </div>
       </body>
     </html>
   );

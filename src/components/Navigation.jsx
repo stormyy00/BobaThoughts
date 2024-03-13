@@ -37,7 +37,7 @@ const Navigation = () => {
       <div className="w-9/12 flex flex-cols justify-end h-full items-center gap-6">
         {items.map((item, index) => (
           <div key={index} className=" hover:scale-110 duration-300 ">
-            <Button text={item.name} path={item.link} />
+            <Button text={item.name} icon={item.icon} path={item.link} />
           </div>
         ))}
       </div>
@@ -48,7 +48,7 @@ const Navigation = () => {
             src={user?.photoURL || DefaultUserImg}
             width={50}
             height={50}
-            className="rounded-l-full -ml-2 "
+            className="rounded-l-full -ml-2"
           />
           {/* <div className="px-0 pt-5 mx-2 text-sm">{user.email}</div> */}
           {/* maybe had on hover effect to display email */}
@@ -61,7 +61,7 @@ const Navigation = () => {
           </button>
         </div>
       ) : (
-        <Button text="Sign In" path="/signin" />
+        <Button text="sign in" path="/signin" />
       )}
     </header>
   );
