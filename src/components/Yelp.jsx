@@ -102,14 +102,11 @@ const YelpSearch = () => {
       </div>
 
       {businesses.businesses && businesses.businesses.length > 0 ? (
-        <div
-          className="bg-green-300 grid grid-cols-3"
-          data-testid="search-results"
-        >
+        <div className=" grid grid-cols-3" data-testid="search-results">
           {businesses.businesses.map((business, index) => (
             <div
               key={index}
-              className="flex flex-cols-3 w-10/12 gap-0 mt-5 ml-11 bg-red-300 border-4 border-black mb-10 rounded-3xl justify-center duration-300"
+              className="flex flex-cols-3 w-10/12 gap-0 mt-5 ml-11 border-4 border-black mb-10 rounded-3xl justify-center duration-300"
             >
               <div className="flex flex-col items-center mt-3 -mb-9">
                 <Link href={business.url}>
