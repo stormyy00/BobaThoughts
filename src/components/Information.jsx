@@ -42,7 +42,6 @@ const Information = () => {
       }
       const data = await response.json();
       console.log(data);
-      console.log(data.businesses[0].url);
       setBusinesses(data.businesses[0]);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -82,14 +81,10 @@ const Information = () => {
   return (
     <>
       <Header />
-      <div className="flex items-center flex-col h-screen">
+      <div className="flex items-center flex-col h-screen bg-red-400">
         {/* Business Details for {address} || {term} */}
-        <div className="flex w-4/12 h-4/5 flex-col items-center border-4 border-black mt-10 rounded-3xl">
-          <a href={businesses.url}>
-            <p className="text-2xl font-bold mt-4 hover:scale-110 duration-300">
-              {businesses.name}
-            </p>
-          </a>
+        <div className="flex w-6/12 h-4/5 flex-col items-center bg-lime-300">
+          <p className="text-2xl font-bold">{businesses.name}</p>
           <p>Rating: {businesses.rating}</p>
           <button
             onClick={() => handleFavorite(businesses)}
@@ -106,7 +101,7 @@ const Information = () => {
             <img
               src={businesses.image_url}
               alt="image"
-              className="w-72 h-full object-cover bg-sky-200"
+              className="w-72 h-full object-cover  bg-sky-200"
             />
           </div>
         </div>
