@@ -1,10 +1,6 @@
 import TextBox from "../../src/components/TextBox";
 
 describe("TextBox component", () => {
-  // beforeEach(() => {
-  //   cy.visit('/') // Assuming your component is rendered on the homepage
-  // })
-
   it("renders with placeholder and value", () => {
     const placeholder = "Enter text...";
     const value = "Test Value";

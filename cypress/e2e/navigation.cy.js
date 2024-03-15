@@ -6,8 +6,6 @@ describe("Navigation", () => {
   });
 
   it("should navigate to Home page when Home link is clicked", () => {
-    // cy.get('[ cy-data="input"]').type("New York");
-    // cy.get('[ cy-data="button"]').click();
     cy.wait(2000); // Wait for 2 seconds for the page to fully render (adjust the wait time as needed)
     cy.get('a[href="/"]').click(); // Click on the Home link
     cy.url().should("eq", Cypress.config().baseUrl + "/"); // Assert that the URL is the Home page URL
