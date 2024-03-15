@@ -81,10 +81,14 @@ const Information = () => {
   return (
     <>
       <Header />
-      <div className="flex items-center flex-col h-screen bg-red-400">
+      <div className="flex items-center flex-col h-screen">
         {/* Business Details for {address} || {term} */}
-        <div className="flex w-6/12 h-4/5 flex-col items-center bg-lime-300">
-          <p className="text-2xl font-bold">{businesses.name}</p>
+        <div className="flex w-2/5 h-10/12 flex-col items-center  border-4 border-black rounded-3xl mt-10">
+          <a href={businesses.url}>
+            <p className="text-2xl font-bold hover:scale-110 duration-300 mt-3">
+              {businesses.name}
+            </p>
+          </a>
           <p>Rating: {businesses.rating}</p>
           <button
             onClick={() => handleFavorite(businesses)}
